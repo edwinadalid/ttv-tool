@@ -3,7 +3,7 @@
   <parent>
     <artifactId>spring-boot-starter-parent</artifactId>
     <groupId>org.springframework.boot</groupId>
-    <version>1.4.4.RELEASE</version>
+    <version>2.2.2.RELEASE</version>
     <relativePath>../pom.xml/pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
@@ -20,7 +20,7 @@
         <plugins>
           <plugin>
             <artifactId>maven-shade-plugin</artifactId>
-            <version>2.4.3</version>
+            <version>3.2.1</version>
             <executions>
               <execution>
                 <phase>package</phase>
@@ -62,7 +62,7 @@
               <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>1.4.4.RELEASE</version>
+                <version>2.2.2.RELEASE</version>
                 <scope>compile</scope>
               </dependency>
             </dependencies>
@@ -83,7 +83,7 @@
           </plugin>
           <plugin>
             <artifactId>maven-jar-plugin</artifactId>
-            <version>2.6</version>
+            <version>3.1.2</version>
             <executions>
               <execution>
                 <id>default-jar</id>
@@ -152,19 +152,19 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-      <version>1.4.4.RELEASE</version>
+      <version>2.2.2.RELEASE</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
-      <version>1.4.4.RELEASE</version>
+      <version>2.2.2.RELEASE</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
-      <version>1.4.4.RELEASE</version>
+      <version>2.2.2.RELEASE</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -197,18 +197,6 @@
       <version>2.4.0</version>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>javax.xml.bind</groupId>
-      <artifactId>jaxb-api</artifactId>
-      <version>2.2.8</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.sun.xml.bind</groupId>
-      <artifactId>jaxb-core</artifactId>
-      <version>2.2.8-b01</version>
-      <scope>provided</scope>
-    </dependency>
   </dependencies>
   <properties>
     <swagger.version>1.5.8</swagger.version>
@@ -226,4 +214,3 @@
     <springfox.version>2.4.0</springfox.version>
   </properties>
 </project>
-
