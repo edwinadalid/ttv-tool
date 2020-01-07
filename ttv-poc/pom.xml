@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.4.4.RELEASE</version>
+	</parent>
+	<groupId>com.telus</groupId>
+	<artifactId>ttv-poc</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>ttv-poc</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<keycloak.version>2.4.0.Final</keycloak.version>
+		<openfeign.version>9.4.0</openfeign.version>
+		<openfeign.opentracing.version>0.0.3</openfeign.opentracing.version>
+		<hystrix.version>1.5.1</hystrix.version>
+		<io.opentracing.version>0.22.0</io.opentracing.version>
+		<io.opentracing.contrib.spring.autoconfigure.version>0.0.4</io.opentracing.contrib.spring.autoconfigure.version>
+		<swagger.version>1.5.8</swagger.version>
+		<springfox.version>2.4.0</springfox.version>
+		<version.jaeger>0.19.0</version.jaeger>
+		<fabric8.generator.from>fabric8/s2i-java</fabric8.generator.from>
+		<fabric8.generator.from>fabric8/s2i-java</fabric8.generator.from>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.keycloak</groupId>
+			<artifactId>keycloak-spring-boot-adapter</artifactId>
+			<version>${keycloak.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.keycloak</groupId>
+			<artifactId>keycloak-tomcat8-adapter</artifactId>
+			<version>${keycloak.version}</version>
+		</dependency>
+
+		<!-- feign -->
+		<dependency>
+			<groupId>io.github.openfeign.opentracing</groupId>
+			<artifactId>feign-hystrix-opentracing</artifactId>
+			<version>${openfeign.opentracing.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-jackson</artifactId>
+			<version>${openfeign.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-httpclient</artifactId>
+			<version>${openfeign.version}</version>
+		</dependency>
+
+		<!-- hystrix-metrics-event-stream -->
+		<dependency>
+			<groupId>com.netflix.hystrix</groupId>
+			<artifactId>hystrix-core</artifactId>
+			<version>${hystrix.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.netflix.hystrix</groupId>
+			<artifactId>hystrix-metrics-event-stream</artifactId>
+			<version>${hystrix.version}</version>
+		</dependency>
+
+		<!-- OpenTracing -->
+		<dependency>
+			<groupId>io.opentracing</groupId>
+			<artifactId>opentracing-noop</artifactId>
+			<version>${io.opentracing.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.opentracing.contrib</groupId>
+			<artifactId>opentracing-spring-web-autoconfigure</artifactId>
+			<version>${io.opentracing.contrib.spring.autoconfigure.version}</version>
+		</dependency>
+
+		<!-- OpenTracing implementation - Jaeger -->
+		<dependency>
+			<groupId>com.uber.jaeger</groupId>
+			<artifactId>jaeger-core</artifactId>
+			<version>${version.jaeger}</version>
+		</dependency>
+
+		<!-- Swagger -->
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-jaxrs</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+		
+		<dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-core</artifactId>
+            <version>2.2.8-b01</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.2.8-b01</version>
+        </dependency>
+	</dependencies>
+
+	<profiles>
+        <profile>
+            <id>fat-jar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <finalName>ttv-poc</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-shade-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>shade</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>com.telus.TtvToolApplication</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>flat-classpath-jar</id>
+            <build>
+                <finalName>ttv-poc</finalName>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>copy-dependencies</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                                    <useRepositoryLayout>true</useRepositoryLayout>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>build-classpath</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>build-classpath</goal>
+                                </goals>
+                                <configuration>
+                                    <outputFile>${project.build.directory}/lib/classpath</outputFile>
+                                    <localRepoProperty>lib</localRepoProperty>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
