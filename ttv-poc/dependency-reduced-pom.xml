@@ -180,54 +180,6 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>io.github.openfeign.opentracing</groupId>
-      <artifactId>feign-hystrix-opentracing</artifactId>
-      <version>0.0.3</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.github.openfeign</groupId>
-      <artifactId>feign-jackson</artifactId>
-      <version>9.4.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.github.openfeign</groupId>
-      <artifactId>feign-httpclient</artifactId>
-      <version>9.4.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.netflix.hystrix</groupId>
-      <artifactId>hystrix-core</artifactId>
-      <version>1.5.1</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.netflix.hystrix</groupId>
-      <artifactId>hystrix-metrics-event-stream</artifactId>
-      <version>1.5.1</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.opentracing</groupId>
-      <artifactId>opentracing-noop</artifactId>
-      <version>0.22.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.opentracing.contrib</groupId>
-      <artifactId>opentracing-spring-web-autoconfigure</artifactId>
-      <version>0.0.4</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.uber.jaeger</groupId>
-      <artifactId>jaeger-core</artifactId>
-      <version>0.19.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>io.swagger</groupId>
       <artifactId>swagger-jaxrs</artifactId>
       <version>1.5.8</version>
@@ -254,12 +206,6 @@
     <dependency>
       <groupId>com.sun.xml.bind</groupId>
       <artifactId>jaxb-core</artifactId>
-      <version>2.2.8-b01</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.sun.xml.bind</groupId>
-      <artifactId>jaxb-impl</artifactId>
       <version>2.2.8-b01</version>
       <scope>provided</scope>
     </dependency>
